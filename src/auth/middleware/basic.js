@@ -7,7 +7,7 @@ module.exports = async (req, res, next) => {
   if (!req.headers.authorization) {
     return _authError();
   }
-  console.log("BASICCCCCCCCCCCCCCCC");
+  // console.log("BASICCCCCCCCCCCCCCCC");
   // let basicHeaderParts = req.headers.authorization.split(" ");
   // let encodedValue = basicHeaderParts.pop();
   // let decodedValue = base64.decode(encodedValue);
@@ -16,9 +16,9 @@ module.exports = async (req, res, next) => {
   let [username, pass] = base64.decode(basic).split(':');
 
   try {
-    req.user = await users.authenticateBasic(username, pass).then((a) => {
-      // console.log("aaaaaaaaaaaaaaaaaaaaaaa",a);
-      req.user = a;
+    req.user = await users.authenticateBasic(username, pass).then((user) => {
+      // console.log("aaaaaaaaaaaaaaaaaaaaaaa",user);
+      req.user = user;
       next();
     })
       .catch((e) => {

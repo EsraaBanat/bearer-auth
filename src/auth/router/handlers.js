@@ -1,8 +1,6 @@
 'use strict';
 // require("dotenv").config();
-const {
-  users
-} = require('../models/index.js');
+const {users} = require('../models/index.js');
 
 async function handleSignup(req, res, next) {
   try {
@@ -45,7 +43,7 @@ async function handleSignin(req, res, next) {
 
 async function handleGetUsers(req, res, next) {
   try {
-    console.log(req.user);
+    // console.log(req.user);
     // const userRecords = await users.findAll();
     // const list = users.map(user => user.username);
     res.status(200).json(req.user);
@@ -56,7 +54,7 @@ async function handleGetUsers(req, res, next) {
 }
 
 function handleSecret(req, res, next) {
-  res.status(200).text("Welcome to the secret area!");
+  res.status(200).send("Welcome to the secret area!");
 }
 
 module.exports = {

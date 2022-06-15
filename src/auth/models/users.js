@@ -11,7 +11,7 @@ const userSchema = (sequelize, DataTypes) => {
     token: {
       type: DataTypes.VIRTUAL,
       get() {
-        return jwt.sign({ username: this.username },secret);
+        return jwt.sign({ username: this.username }, secret,{expiresIn: '15 min'});
       }
     }
   });
@@ -36,8 +36,10 @@ const userSchema = (sequelize, DataTypes) => {
   // Bearer AUTH: Validating a token
   model.authenticateToken = async function (token) {
     try {
-      const parsedToken = jwt.verify(token, secret );
-      const user = this.findOne({ username: parsedToken.username })
+      const parsedToken = jwt.verify(token, secret);
+      // console.log("parsedTokenNNNNNNNNNNNNNNNNn",parsedToken);
+      const user = this.findOne({where: { username: parsedToken.username }})
+      // console.log("userrrrrrrrrrrr",user);
       if (user) { return user; }
       throw new Error("User Not Found");
     } catch (e) {

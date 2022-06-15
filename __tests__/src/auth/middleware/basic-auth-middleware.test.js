@@ -36,16 +36,17 @@ describe('Auth Middleware', () => {
 
     it('fails a login for a user (admin) with the incorrect basic credentials', () => {
       const basicAuthString = base64.encode('username:password');
-
+      // console.log({basicAuthString});
       // Change the request to match this test case
       req.headers = {
         authorization: `Basic ${basicAuthString}`,
       };
-
+      
       return middleware(req, res, next)
-        .then(() => {
-          expect(next).not.toHaveBeenCalled();
-          expect(res.status).toHaveBeenCalledWith(403);
+      .then(() => {
+        expect(next).not.toHaveBeenCalled();
+        // console.log('res.statssssss',res.status);
+        expect(res.status).toHaveBeenCalledWith(403);
         });
 
     });
@@ -60,9 +61,11 @@ describe('Auth Middleware', () => {
 
       return middleware(req, res, next)
         .then(() => {
-          expect(next).toHaveBeenCalledWith();
+          expect(next).toHaveBeenCalled();
         });
 
     });
   });
 });
+
+

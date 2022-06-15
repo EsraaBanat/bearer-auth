@@ -10,9 +10,9 @@ module.exports = async (req, res, next) => {
 
     const token = req.headers.authorization.split(' ').pop();
     // console.log('>>>>>>>>>>>>>>>>>>',token);
-    const validUser = await users.authenticateToken(token).then((e) => {
-      // console.log("VVVVVVVVVVVV", e);
-          req.user = e;
+    const validUser = await users.authenticateToken(token).then((user) => {
+      // console.log("VVVVVVVVVVVV", user);
+          req.user = user;
           // req.token = validUser.token;
     next();
     })
