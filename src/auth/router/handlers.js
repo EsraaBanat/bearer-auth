@@ -1,6 +1,10 @@
 'use strict';
 // require("dotenv").config();
-const {users} = require('../models/index.js');
+const { users } = require('../models/index.js');
+
+ function homepage (req, res, next) {
+   res.send("HELLO From Bear Authorization Repo");
+}
 
 async function handleSignup(req, res, next) {
   try {
@@ -61,5 +65,6 @@ module.exports = {
   handleSignup,
   handleSignin,
   handleGetUsers,
-  handleSecret
+  handleSecret,
+  homepage
 }
