@@ -13,7 +13,7 @@ const {
   homepage
 } = require('./handlers.js');
 
-authRouter.post('/', homepage);
+authRouter.get('/', homepage);
 authRouter.post('/signup', handleSignup);
 authRouter.post('/signin', basicAuth, handleSignin);
 authRouter.get('/users', bearerAuth, handleGetUsers);
